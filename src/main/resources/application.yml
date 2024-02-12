@@ -1,0 +1,31 @@
+server:
+  port: 9000
+
+spring:
+  datasource:
+    url: <YOUR_DB_URL>
+    username: <YOUR_DB_USERNAME>
+    password: <YOUR_DB_PASSWORD>
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: <YOUR_CLIENT_ID>
+            clientSecret: <YOUR_CLIENT_SECRET>
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - email
+              - profile
+
+app:
+  authorizedRedirectUrls:
+    - http://localhost:3000/oauth2/redirect
+    - myandroidapp://oauth2/redirect
+    - myiosapp://oauth2/redirect
